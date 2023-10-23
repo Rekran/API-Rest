@@ -1,5 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Video } from "./Video";
+import { Subject } from "./Subject";
+import { subtle } from "crypto";
 
 
 @Entity('rooms')
@@ -12,4 +14,7 @@ export class Room{
 
     @OneToMany(() => Video, (video) => video.room)
     videos: Video[]
+
+    @ManyToMany(()=> Subject, (subject) => subject.rooms)
+    subjects: Subject[]
 }
