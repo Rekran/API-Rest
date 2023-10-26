@@ -19,7 +19,7 @@ export class Room{
     createdAt: Date
 
     @UpdateDateColumn({type: 'timestamptz'})
-    UpdatedAt: Date
+    updatedAt: Date
 
     @Column({type: 'boolean', default: true})
     enabled: boolean
