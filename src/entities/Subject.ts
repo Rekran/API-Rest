@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Room } from "./Room";
 
 @Entity('subjects')
@@ -7,9 +7,17 @@ export class Subject{
     @PrimaryGeneratedColumn()
     id: number
 
-
     @Column({type: 'text'})
     name: string
+
+    @CreateDateColumn({type: 'timestamptz' })
+    createdAt: Date
+
+    @UpdateDateColumn({type: 'timestamptz'})
+    UpdatedAt: Date
+
+    @Column({type: 'boolean', default: true})
+    enabled: boolean
 
     @ManyToMany(() => Room, (room) => room.subjects)
     @JoinTable({

@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn,CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Video } from "./Video";
 import { Subject } from "./Subject";
+
 
 
 @Entity('rooms')
@@ -10,6 +11,18 @@ export class Room{
 
     @Column({type: 'text'})
     name: string
+
+    @Column({type: 'text'})
+    description: string
+
+    @CreateDateColumn({type: 'timestamptz' })
+    createdAt: Date
+
+    @UpdateDateColumn({type: 'timestamptz'})
+    UpdatedAt: Date
+
+    @Column({type: 'boolean', default: true})
+    enabled: boolean
 
     @OneToMany(() => Video, (video) => video.room)
     videos: Video[]

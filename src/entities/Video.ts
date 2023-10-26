@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Room } from "./Room";
 
 
@@ -13,6 +13,15 @@ export class Video {
 
     @Column({type: 'text'})
     url: string
+
+    @CreateDateColumn({type: 'timestamptz' })
+    createdAt: Date
+
+    @UpdateDateColumn({type: 'timestamptz'})
+    UpdatedAt: Date
+
+    @Column({type: 'boolean', default: true})
+    enabled: boolean
     
     @ManyToOne(() => Room, (room) => room.videos)
     @JoinColumn({name: 'room_id'})
