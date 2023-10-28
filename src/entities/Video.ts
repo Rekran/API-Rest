@@ -23,7 +23,7 @@ export class Video {
     @Column({type: 'boolean', default: true})
     enabled: boolean
     
-    @ManyToOne(() => Room, (room) => room.videos)
-    @JoinColumn({name: 'room_id'})
-    room: Room
+    @ManyToOne(() => Room, room => room.videos)
+	@JoinColumn({ name: 'room_id' })
+	room: Room
 }

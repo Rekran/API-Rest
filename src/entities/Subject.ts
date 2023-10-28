@@ -19,18 +19,18 @@ export class Subject{
     @Column({type: 'boolean', default: true})
     enabled: boolean
 
-    @ManyToMany(() => Room, (room) => room.subjects)
-    @JoinTable({
-        name: 'room_subject',
+    @ManyToMany(() => Room, room => room.subjects)
+	@JoinTable({
+        name: 'room_subjects',
         joinColumn: {
-            name: 'room_id',
-            referencedColumnName: 'id'
-        },
-        inverseJoinColumn:{
             name: 'subject_id',
-            referencedColumnName: 'id'
-        }  
-    })
+            referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+            name: 'room_id',
+            referencedColumnName: 'id',
+        },
+	})
     rooms: Room[]
 
 }

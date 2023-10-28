@@ -24,9 +24,9 @@ export class Room{
     @Column({type: 'boolean', default: true})
     enabled: boolean
 
-    @OneToMany(() => Video, (video) => video.room)
+    @OneToMany(() => Video, video => video.room)
     videos: Video[]
 
-    @ManyToMany(()=> Subject, (subject) => subject.rooms)
+    @ManyToMany(()=> Subject, subject => subject.rooms)
     subjects: Subject[]
 }
