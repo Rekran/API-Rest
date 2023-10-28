@@ -54,11 +54,15 @@ export class roomController{
 			const subject = await subjectRepository.findOneBy({	id: Number(subject_id)})
 			if (!subject) throw new BadRequestError('Subject not found')
 
+            const subject2 = await subjectRepository.findOneBy({id: 2})
+                   
+                
             const roomUpdate = {
                 ...room,
-                subjects: [subject]
+                Subject: subject
             }
-
+            
+        
 			await roomRepository.save(roomUpdate)
 
 			return res.status(204).send()
