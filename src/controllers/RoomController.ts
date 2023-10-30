@@ -5,7 +5,6 @@ import { BadRequestError } from "../helpers/api.erros";
 import { videoSchema } from "../schema/videoSchema";
 import { videoRepository } from "../repositories/videoRepository";
 import { subjectRepository } from "../repositories/subjectRepository";
-import { Subject } from "typeorm/persistence/Subject";
 
 
 export class roomController{
@@ -54,18 +53,23 @@ export class roomController{
 			const subject = await subjectRepository.findOneBy({	id: Number(subject_id)})
 			if (!subject) throw new BadRequestError('Subject not found')
 
-            const subject2 = await subjectRepository.findOneBy({id: 2})
-                   
-                
+           
+            const subjects = await roomRepository.find({
+                where: {id: Number(idRoom)},
+                relations:{
+                    subjects: true
+                }
+            })
+
             const roomUpdate = {
                 ...room,
-                Subject: subject
+                subjects: [...subjects[0].subjects, subject]
             }
-            
-        
-			await roomRepository.save(roomUpdate)
 
-			return res.status(204).send()
+            roomRepository.save(roomUpdate)
+            return res.status(200).json()
+            
+            
 
 	}
 

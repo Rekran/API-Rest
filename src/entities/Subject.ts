@@ -32,5 +32,4 @@ export class Subject{
         },
 	})
     rooms: Room[]
-
 }
