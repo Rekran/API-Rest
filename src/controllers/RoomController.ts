@@ -6,7 +6,6 @@ import { videoSchema } from "../schema/videoSchema";
 import { videoRepository } from "../repositories/videoRepository";
 import { subjectRepository } from "../repositories/subjectRepository";
 
-
 export class roomController{
     async create(req: Request, res: Response){
 
@@ -18,9 +17,7 @@ export class roomController{
 
         return res.status(201).json(newSubject)
 
-        
     }
-
 
     async createVideo(req: Request, res: Response){
 
@@ -69,8 +66,6 @@ export class roomController{
             roomRepository.save(roomUpdate)
             return res.status(200).json()
             
-            
-
 	}
 
     async list(req: Request, res: Response){
